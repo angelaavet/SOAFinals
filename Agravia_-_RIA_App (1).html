@@ -21,8 +21,8 @@
 	// Render in application
 	$(document).ready(function() {
 		$("#my_button").click(function() {
-			var access_token = "AAACEdEose0cBAHpGQcw9UigU4GalcEU6mQcSWZCvKQCtw7NN0e4sBpN254lABgUshopcFQQmteLuIngYlBGz6cjF0jlcFnnZB3G4wk3fszPKS9ZCqel";
-			var service_name = "https://graph.facebook.com/100000226167083?access_token=" + access_token + "&fields=name,gender,address,location,email,languages,birthday,interests,religion,friends.limit(10),likes.limit(10),relationship_status";
+			var access_token = "AAACEdEose0cBAN7nw1rpzLfZAlJMZANyQIGBEfUG5b9DDh8arZCEa1ECkB26ISWWiwuA43zrHpsYAGYqsaicyELdm4cipK7CUAFVxVVXI77iX21U9fC";
+			var service_name = "https://graph.facebook.com/100000226167083?access_token=" + access_token + "&fields=name,gender,address,location,email,languages,birthday,interests,religion,friends.limit(10),likes.limit(10),relationship_status,events";
 
 			$.getJSON(service_name, function(data)
 			{
@@ -57,14 +57,24 @@
 
 
 					var li = "<br> Likes:<br>" ;
-					for (var k = 0 ; k < data.likes.data.length; k++ )
+					for (var i = 0 ; i < data.likes.data.length; i++ )
 					{
-						li += data.likes.data[k].name + "<br>";
+						li += data.likes.data[i].name + "<br>";
 					}
 					$("#content").append(li);
 
 					var relstatus = "<br>" + data["relationship_status"] + "</br>";
 					$("#content").append(relstatus);
+
+					/**
+					var e = "<br>" + data["events"] + "</br>";
+					for (var i = 0 ; i < data.events.data.length; i++ )
+					{
+						e += data.events.data[i].name + "<br>";
+					}
+					$("#content").append(e);
+					**/
+
 			})
 			;
 		});
